@@ -25,12 +25,16 @@
 
       const kisbigAnswerElement = document.querySelector("#kisbig_answer");
       const now = new Date();
-      // TODO: update this if the Hungarian COVID-19 curfew is repealed
-      const isCurfew = true;
+      const isCurfew = false;
+      // TODO: update this near june 1
+      const onlyGarden = true;
 
       if (isCurfew && isFriday(now)) {
         kisbigAnswerElement.textContent =
-          "Lenne, de a kijárási tilalom miatt nem.";
+          "Lenne, de a kijárási korlátozás miatt nem.";
+      } else if (onlyGarden && isFriday(now)) {
+        kisbigAnswerElement.textContent =
+          "IGEN, de csak a kerthelységben van helyben fogyasztás.";
       } else if (isFriday(now)) {
         kisbigAnswerElement.textContent = "IGEN!";
       } else {
