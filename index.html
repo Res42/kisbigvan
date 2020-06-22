@@ -19,14 +19,14 @@
     <h1 id="kisbig_answer"></h1>
 
     <script>
-      function isFriday(date) {
-        return date.getDay() === 5;
+      function isKisbigVan(date) {
+        return date.getDay() === 1 || date.getDay() === 5;
       }
 
       const kisbigAnswerElement = document.querySelector("#kisbig_answer");
       const now = new Date();
      
-      if (isFriday(now)) {
+      if (isKisbigVan(now)) {
         kisbigAnswerElement.textContent = "IGEN!";
       } else {
         kisbigAnswerElement.textContent = "Nem.";
