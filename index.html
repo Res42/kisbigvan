@@ -20,7 +20,15 @@
 
     <script>
       function isKisbigVan(date) {
-        return date.getDay() === 5;
+        return isForcedKisbigVan() || date.getDay() === 5;
+      }
+
+      function isForcedKisbigVan() {
+        var regex = new RegExp('[?&]' + 'van' + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(window.location.href);
+        console.log(results)
+        if (!results || (!results[2])) return false;
+        return results[2] === "true";
       }
 
       const kisbigAnswerElement = document.querySelector("#kisbig_answer");
