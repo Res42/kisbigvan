@@ -20,7 +20,12 @@
 
     <script>
       function isKisbigVan(date) {
-        return date.getDay() === 5;
+        return isForcedKisbigVan() || date.getDay() === 5;
+      }
+
+      function isForcedKisbigVan() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('van') === "true";
       }
 
       const kisbigAnswerElement = document.querySelector("#kisbig_answer");
