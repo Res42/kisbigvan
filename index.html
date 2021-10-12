@@ -24,11 +24,8 @@
       }
 
       function isForcedKisbigVan() {
-        var regex = new RegExp('[?&]' + 'van' + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(window.location.href);
-        console.log(results)
-        if (!results || (!results[2])) return false;
-        return results[2] === "true";
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('van') === "true";
       }
 
       const kisbigAnswerElement = document.querySelector("#kisbig_answer");
