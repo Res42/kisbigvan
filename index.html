@@ -15,17 +15,28 @@
     </style>
   </head>
   <body>
-    <h2>Ma <a href="http://kisbig.hupont.hu/">Kisbig</a> van?</h2>
-    <h1 id="kisbig_answer"><noscript>Nem.</noscript></h1>
+    <h2>Ma <a href="https://www.kisbig.hu/">Kisbig</a> van?</h2>
+    <h1 id="kisbig_answer"><noscript>IGEN!</noscript></h1>
 
     <script>
-      function isKisbigVan(date) {
-        return isForcedKisbigVan() || date.getDay() === 5;
+      const DAYS = {
+        hetfo: 1,
+        kedd: 2,
+        szerda: 3,
+        csutortok: 4,
+        pentek: 5,
       }
 
-      function isForcedKisbigVan() {
+      function getDays() {
         const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('van') === "true";
+        const days = urlParams.get('napok');
+        return days ? days.split(',').map(day => DAYS[day]).filter(v => v != null) : [];
+      }
+
+      function isKisbigVan(date) {
+        const days = getDays();
+        const day = date.getDay();
+        return days.length ? days.includes(day) : (1 <= day && day <= 5);
       }
 
       const kisbigAnswerElement = document.querySelector("#kisbig_answer");
